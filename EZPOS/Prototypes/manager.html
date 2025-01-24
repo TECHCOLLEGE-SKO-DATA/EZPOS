@@ -1,33 +1,49 @@
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="manager.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grouped Objects</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div id="managerUI">
-        <div class="pageButtons manager">
-            <div class="pageLinkDiv operatorLink managerPage">
-                <a href="index.html" class="pageLink black">Operator</a>
-            </div>
-            <div class="pageLinkDiv managerLink managerPage">
-                <a href="#" class="pageLink white">Manager</a>
-            </div>
-        </div>
 
-        <div id="loginBox">
-            <h1>Enter Pin</h1>
-            
-            <div id="passwordBox" >
-                <input type="password" id="passwordInput" placeholder="enter pin">
-                <button id="loginButton">Login</button>
-            </div>
+    <div class="topnav">
+        <a href="index.html">Operator</a>
+        <a class="active" href="manager.html">Manager</a>
+    </div>
+
+    <div id="PBox" class="passwordbox">
+        <h5>Password:</h5>
+        <input type="password" minlength="4" placeholder="Enter pin" id="myInput" class="password-input">
+        <button class="passwordbutton" id="PasswordBtn">Enter</button>
+    </div>
+
+    <div id="VBox" class="itembox">
+        <div class="group">
+            <select id="categories" name="category">
+                <option value="" disabled selected>Select a category</option>
+                <option value="Food">Food</option>
+                <option value="Beverage">Beverage</option>
+                <option value="Drink">Drink</option>
+                <option value="Goody">Goody</option>
+                <option value="Misc">Misc</option>
+              </select>
+            <input type="Item" minlength="2" placeholder="Enter Item Name" id="myInput" class="password-input">
+            <input type="Stock" minlength="1" placeholder="Enter Item Amount" id="myInput" class="password-input">
+            <input type="checkbox" id="isHidden1" name="isHidden1" value="Bike">
+            <label for="isHidden1"> Hidden</label><br>
+            <button class="RemoveButton" id="PasswordBtn">Remove</button>
         </div>
     </div>
-</body>
 
+    <div id="AddBtn" class="AddButton">
+        <button class="addmoreButton" onclick="addGroup()">Add More</button>
+    </div>
+
+
+    <script src="password.js"></script>
+
+</body>
 </html>
