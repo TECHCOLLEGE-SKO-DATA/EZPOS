@@ -1,0 +1,72 @@
+.itemNameInput{
+    position: relative;
+    font-weight: 400;
+    font-style: normal;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    color: rgba(0, 0, 0, .87);
+}
+
+#itemsTable{
+    width: 80%;
+    background: #fff;
+    margin: 1em 0;
+    border: 1px solid rgba(34, 36, 38, .15);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: .28571429rem;
+    text-align: left;
+    color: rgba(0, 0, 0, .87);
+    border-collapse: separate;
+    border-spacing: 0;
+    
+}
+
+.checkBox{
+    position: relative;
+    display: inline-block;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    outline: 0;
+    vertical-align: baseline;
+    font-style: normal;
+    min-height: 17px;
+    font-size: 1rem;
+    line-height: 17px;
+    min-width: 17px;
+    color: rgb(255, 9, 9);
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.buttonRemove{
+    background-color: #db2828;
+    color: #fff;
+    text-shadow: none;
+    background-image: none;
+    cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+    outline: 0;
+    border: none;
+    vertical-align: baseline;
+    font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    margin: 0 .25em 0 0;
+    padding: .78571429em 1.5em .78571429em;
+    border-radius: .28571429rem;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
