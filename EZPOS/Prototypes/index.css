@@ -15,7 +15,7 @@
 .grid.shopItems{
     padding: 0;
     width: 62.5% !important;
-    background: rgb(68, 68, 68);
+    background: #1e1e1e;
     color: white;
     height: 100vh;
 }
@@ -23,13 +23,62 @@
 .itemButton{
     display: inline-block;
     width: 18.3%;
-    height: 15vh;
+    height: 17vh;
     position: relative;
     cursor: pointer;
     vertical-align: top;
     margin: 0.5%;
     border-radius: 5px;
-    padding-bottom: 5vh;
+    color: rgb(255, 255, 255);
+    background-color: rgb(90, 94, 94);
+    transition: transform 0.1s ease-in-out;
+    height: 200px;
+    width: 200px;
+}
+
+.itemButton:active{
+    transform: translateY(2px);
+}
+
+.itemButton:hover{
+    background-color: rgb(76, 75, 75);
+}
+
+.itemButton.red{
+    background-color: red;
+}
+
+.itemButton.darkblue{
+    background-color: #00f;
+}
+
+.itemButton.blue{
+    background-color: #0aa;
+}
+
+.itemButton.green{
+    background-color: #0c0;
+}
+
+.itemName{
+    text-align: center;
+    margin-top: 0%;
+    font-size: 200%;
+    font-style:normal;
+    color: #ffffff;
+}
+
+.itemPrice{
+    padding: 0%;
+    font-size: 300%;
+    margin-top: 60px;
+    font-style: oblique;
+    color: #d6b025;
+}
+
+.sectionSplit{
+    margin: 0 auto;
+
 }
 
 .item{
@@ -43,22 +92,13 @@
 }
 
 .price{
-    background-color: rgba(0, 0, 0, .06666666666666667);
-    position: absolute;
-    text-align: right;
-    bottom: 0;
-    width: 100%;
     display: block;
-    font-size: 1.5vw;
-    height: 4vh;
+    margin-left: 20px;
+    font-size: 50px;
 }
 
 span.priceText{
-    margin: 1vh;
-}
-
-.itemButton.red{
-    background-color: red;
+    margin-bottom: 2%;
 }
 
 .action{
@@ -106,18 +146,6 @@ span.priceText{
     background-color: red;
 }
 
-.itemButton.darkblue{
-    background-color: #00f;
-}
-
-.itemButton.blue{
-    background-color: #0aa;
-}
-
-.itemButton.green{
-    background-color: #0c0;
-}
-
 .action.approve{
     background-color: #0c0;
     position: absolute;
@@ -137,12 +165,13 @@ body{
     color: rgba(0, 0, 0, .87);
 }
 
-div.highlight{
+/*div.highlight{
     height: 50px;
     width: 100%;
     background: hsla(0, 0%, 100%, .26666666666666666);
     border-radius: 5px 5px 0 0;
 }
+    */
 
 div.highlight.action{
     height: 30px;
@@ -177,8 +206,6 @@ div.pageLinkDiv{
     width: 50%;
     background-color: rgb(205, 205, 205);
 }
-
-
 
 .pageLinkDiv.managerLink.managerPage{
     background-color: #21ba45;
