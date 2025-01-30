@@ -3,12 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Operator</title>
     <link rel="stylesheet" href="index.css">
-    <title>Document</title>
 </head>
 
 <body>
@@ -19,21 +16,21 @@
         <div class="grid">
             <div id="actions">
                 <div class="actionsInnerBox">
-                    <div class="action red">
+                    <div class="action red" onclick="deleteSelectedItems()">
                         <div class="highlight action"></div>
                         <div class="item">
                             <span>Slet</span>
                         </div>
                     </div>
 
-                    <div class="action yellow">
+                    <div onclick="clearPickedItems()" class="action yellow">
                         <div class="highlight action"></div>
                         <div class="item">
                             <span>Nulstil</span>
                         </div>
                     </div>
 
-                    <div class="action approve">
+                    <div class="action approve" onclick="aprovePurchase()">
                         <div class="highlight action"></div>
                         <div class="item">
                             <span>Godkend</span>
@@ -54,7 +51,7 @@
             </div>
             <div class="totalCost">
                 <div class="totalCostText">
-                    <span class="totalCost">0,00 KR.</span>
+                    <span class="totalCost" id="totalCostText">0,00 KR.</span>
                     
                 </div>
                 <div id="totalLabel">
@@ -62,51 +59,13 @@
                 </div>
                 
             </div>
-            <div class="pickedItems">
+            <div id="pickedItems">
 
             </div>
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Function to load saved groups and populate the shopItems grid
-            function loadShopItems() {
-                const shopItemsGrid = document.querySelector('.grid.shopItems');
-                const savedGroups = JSON.parse(localStorage.getItem('groups')) || [];
-        
-                // Clear the shop items grid
-                shopItemsGrid.innerHTML = '';
-        
-                // Loop through saved groups and create buttons for each
-                savedGroups.forEach(group => {
-                    const { itemName, itemAmount, isHidden } = group;
-        
-                    // Only create a button if the group is not hidden and has valid data
-                    if (itemName && itemAmount && !isHidden) {
-                        const itemButton = document.createElement('button');
-                        itemButton.classList.add('itemButton');
-        
-                        // Add button content
-                        itemButton.innerHTML = `
-                            <section class="sectionSplit">
-                                <p class="itemName">${itemName}</p>
-                                <section>
-                                    <p class="itemPrice">${itemAmount},-</p>
-                                </section>
-                            </section>
-                        `;
-        
-                        // Append the button to the grid
-                        shopItemsGrid.appendChild(itemButton);
-                    }
-                });
-            }
-        
-            // Load the shop items on page load
-            loadShopItems();
-        });
-        </script>
+    <script src="index.js"></script>
 
 </body>
 
