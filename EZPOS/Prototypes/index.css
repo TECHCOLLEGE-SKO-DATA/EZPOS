@@ -139,6 +139,7 @@ span.priceText{
 }
 
 .grid.pickedItems{
+    background-color: white;
     margin-left: 10px;
     display: inline-block;
     position: relative;
@@ -170,6 +171,7 @@ span.priceText{
 }
 
 body{
+    touch-action: manipulation;
     height: 100vh;
     margin: 0;
     padding: 0;
@@ -179,6 +181,7 @@ body{
     font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
     font-size: 14px;
     line-height: 1.5em;
+    background-color: black;
     color: rgba(0, 0, 0, .87);
 }
 
@@ -236,7 +239,7 @@ a.pageLink{
 div.totalCost{
     border: 1px solid rgba(34,36,38,.15);
     margin-top: 50px;
-    width: 90%;
+    width: 95%;
     text-align: center;
     height: 200px;
     box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15);
@@ -244,7 +247,7 @@ div.totalCost{
 
 div.totalCostText{
     margin-top: 10%;
-    font-size: 4rem;
+    font-size: 3rem;
     text-align: center;
     width: 100%;
     height: auto;
