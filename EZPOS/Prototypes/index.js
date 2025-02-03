@@ -6,48 +6,47 @@ let pickedItemsNames = new Set()
 const totalCostSpan = document.getElementById("totalCostText")
 document.addEventListener('DOMContentLoaded', () => {
     // Function to load saved groups and populate the shopItems grid
-    function loadShopItems() {
-        const shopItemsGrid = document.querySelector('.grid.shopItems');
-        const savedGroups = JSON.parse(localStorage.getItem('groups')) || [];
+    const shopItemsGrid = document.querySelector('.grid.shopItems');
+    const savedGroups = JSON.parse(localStorage.getItem('groups')) || [];
 
-        // Clear the shop items grid
-        shopItemsGrid.innerHTML = '';
+    // Clear the shop items grid
+    shopItemsGrid.innerHTML = '';
 
-        // Loop through saved groups and create buttons for each
-        savedGroups.forEach(group => {
-            const { itemName, itemAmount, isHidden } = group;
+    // Loop through saved groups and create buttons for each
+    savedGroups.forEach(group => {
+        const { itemName, itemAmount, isHidden } = group;
 
-            // Only create a button if the group is not hidden and has valid data
-            if (itemName && itemAmount && !isHidden) {
-                let color
-                
-                switch(group.category){
-                    case "Food": 
-                        color = "red" 
-                        break;
-                    case "Beverage": 
-                        color = "darkblue"
-                        break
-                    case "Drink": 
-                        color = "blue"
-                        break
-                    case "Goody": 
-                        color = "green"
-                        break
-                    case "Misc": 
-                        color = "yellow"
-                        break
-                    default: 
-                        color = ""
-                        break
-                }
-                
-                
-                const itemButton = document.createElement('button');
-                itemButton.classList.add("itemButton");
+        // Only create a button if the group is not hidden and has valid data
+        if (itemName && itemAmount && !isHidden) {
+            let color
 
-                // Add button content
-                itemButton.innerHTML = `
+            switch (group.category) {
+                case "Food":
+                    color = "red"
+                    break;
+                case "Beverage":
+                    color = "darkblue"
+                    break
+                case "Drink":
+                    color = "blue"
+                    break
+                case "Goody":
+                    color = "green"
+                    break
+                case "Misc":
+                    color = "yellow"
+                    break
+                default:
+                    color = ""
+                    break
+            }
+
+
+            const itemButton = document.createElement('button');
+            itemButton.classList.add("itemButton");
+
+            // Add button content
+            itemButton.innerHTML = `
                     <div class="itemButtonColor ${color}">
                         <section class="sectionSplit">
                             <p class="itemName">${itemName}</p>
@@ -57,18 +56,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         </section>
                     </div>
                 `;
-                itemButton.addEventListener("click", () => pickItem(itemName, parseFloat(itemAmount)))
-                // Append the button to the grid
-                shopItemsGrid.appendChild(itemButton);
-            }
-        });
-    }
+            itemButton.addEventListener("click", () => pickItem(itemName, parseFloat(itemAmount)))
+            // Append the button to the grid
+            shopItemsGrid.appendChild(itemButton);
+        }
+    });
 
-    // Load the shop items on page load
-    loadShopItems();
 });
 
-function clearPickedItems(){
+function clearPickedItems() {
     pickedItems.innerHTML = ""
     totalPrice = 0
     setTotalPriceText()
@@ -76,36 +72,36 @@ function clearPickedItems(){
     pickedItemsNames.clear()
 }
 
-function setTotalPriceText(){
-    totalCostSpan.innerHTML =  formatPrice(totalPrice)
+function setTotalPriceText() {
+    totalCostSpan.innerHTML = formatPrice(totalPrice)
 }
 
-function formatPrice(price){
+function formatPrice(price) {
     return `${price.toFixed(2).replace(".", ",")} KR.`
 }
 
-function pickItem(itemName, itemPrice){
+function pickItem(itemName, itemPrice) {
     const pickedItemDiv = document.createElement("div")
     pickedItemDiv.classList.add("pickedItem")
     const pickedItemCheckBox = document.createElement("input")
     pickedItemCheckBox.setAttribute("type", "checkbox")
     pickedItemCheckBox.classList.add("pickeditemSelectedCheckBox")
     pickedItemCheckBox.addEventListener("click", () => selectPickedItem(pickedItemCheckBox, pickedItemDiv))
-    
-    if (pickedItemsNames.has(itemName)){
+
+    if (pickedItemsNames.has(itemName)) {
         let amount = document.querySelectorAll(".pickedItemName")
         Array.from(amount).forEach((element) => {
-            if (element.innerHTML !== itemName){
+            if (element.innerHTML !== itemName) {
                 return
             }
             const parent = element.parentElement.parentElement
             const itemPriceSpan = parent.querySelector(".pickedItemPrice")
             itemPriceSpan.innerHTML = formatPrice(parseFloat(itemPriceSpan.innerHTML) + itemPrice)
             const itemAmountSpan = parent.querySelector(".itemAmount")
-            itemAmountSpan.innerHTML = (parseInt(itemAmountSpan.innerHTML.replace("x")) + 1) + " x" 
+            itemAmountSpan.innerHTML = (parseInt(itemAmountSpan.innerHTML.replace("x")) + 1) + " x"
         })
     }
-    else{
+    else {
         pickedItemDiv.innerHTML += `
             <span class="pickedItemNameAndAmount">
                 <span class="itemAmount">1 x</span> 
@@ -123,21 +119,21 @@ function pickItem(itemName, itemPrice){
     pickedItemsNames.add(itemName)
 }
 
-function selectPickedItem(checkBox, div){
+function selectPickedItem(checkBox, div) {
     console.log(1)
     div.classList = ""
-    
-    if (checkBox.checked){
+
+    if (checkBox.checked) {
         div.classList.add("pickedItem", "selected")
     }
-    else{
+    else {
         div.classList.add("pickedItem")
     }
 
     selectedPickedItemDivs.push(div)
 }
 
-function calculateTotalCost(){
+function calculateTotalCost() {
     let cost = 0
     Array.from(document.getElementsByClassName("pickedItemPrice")).forEach((element) => {
         cost += parseFloat(element.innerHTML)
@@ -145,16 +141,20 @@ function calculateTotalCost(){
     return cost
 }
 
-function deleteSelectedItems(){
-    selectedPickedItemDivs.forEach((element) =>{
-        try{
+function deleteSelectedItems() {
+    selectedPickedItemDivs.forEach((element) => {
+        try {
             pickedItems.removeChild(element)
             pickedItemsNames.delete(element.querySelector(".pickedItemName").innerHTML)
         }
-        catch{
-            document.getElementsByClassName("pickeditemSelectedCheckBox").checked = false
+        catch {
+            Array.from(document.getElementsByClassName("pickeditemSelectedCheckBox")).forEach((element) =>
+                element.checked = false
+            )
+
+            selectedPickedItemDivs = []
         }
-        
+
     })
 
     pickedItemsNames.delete()
@@ -163,6 +163,6 @@ function deleteSelectedItems(){
     selectedPickedItemDivs = []
 }
 
-function aprovePurchase(){
+function aprovePurchase() {
     clearPickedItems()
 }

@@ -217,8 +217,11 @@ div.highlight.action{
 }
 
 div.pageLinkDiv{
-    padding: 20px 20px 50px 20px;
+    height: 75px;
+    text-align: center;
+    justify-content: center;
     cursor: pointer;
+    display: flex;
 }
 
 .pageLinkDiv.managerLink{
@@ -231,7 +234,16 @@ div.pageLinkDiv{
     background-color: #21ba45;
 }
 
+.pageLinkText{
+    margin: 20px;
+    text-align: center;
+}
+
 a.pageLink{
+    display: block;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
     font-size: 24px;
     text-decoration: none;
 }
