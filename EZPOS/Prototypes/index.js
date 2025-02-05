@@ -185,7 +185,7 @@ async function aprovePurchase() {
 
         clearPickedItems();
 
-        await loadShopItems();
+        location.reload();
 
         console.log("Purchase approved and stock updated.");
     } catch (error) {
