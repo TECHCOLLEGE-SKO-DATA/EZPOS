@@ -13,6 +13,25 @@ body {
     border-radius: 5px;
 }
 
+.group button,
+.group select,
+.group input{
+    height: 40px;
+    font-size: 100%;
+}
+
+.group input[type="checkbox"]{
+    transform: scale(2);
+}
+
+.group label{
+    margin-top: 15px;
+}
+
+.password-input{
+    height: 50%;
+}
+
 .addmoreButton {
     margin: 5px;
     margin-left: 10px;
@@ -23,12 +42,16 @@ body {
     background-color: #1e8623;
 }
 
+.passwordbox h5{
+    font-size: 24px;
+}
+
 .passwordbox {
     display: flex;
     padding: 5px;
     border: 2px solid #2b1010;
     gap: 7px;
-    height: 40px;
+    height: 80px;
     align-items: center;
     display: auto;
 }
@@ -52,7 +75,7 @@ body {
     padding: auto;
     background-color: #b9b6b6;
     width: 80px;
-    height: 20px;
+    height: 50%;
     color: #000000;
     outline: #2b1010;
     text-align: center;
@@ -116,8 +139,14 @@ body {
     flex-direction: column;
     gap: 1px;
 }
+
 .AddButton {
     display: none;
+}
+
+.AddButton button{
+    height: 50px;
+    width: 150px;
 }
   
 
