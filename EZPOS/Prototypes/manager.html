@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-  <title>Grouped Objects</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manager</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/pouchdb@9.0.0/dist/pouchdb.min.js"></script>
 </head>
 
 <body>
@@ -20,16 +21,14 @@
         <button class="passwordbutton" id="PasswordBtn">Enter</button>
     </div>
 
-    <div id="VBox" class="itembox">
-
-    </div>
+    <div id="VBox" class="itembox"></div>
 
     <div id="AddBtn" class="AddButton">
-        <button class="addmoreButton" onclick="addGroup()">Add Product</button>
+        <button class="addmoreButton" onclick="addProduct()">Add Product</button>
+        <button onclick="saveProduct()">Save Products</button>
     </div>
 
+    <script src="manager.js"></script>
 
-    <script src="controller.js"></script>
-    <script src="preventDoubleTapZoom.js"></script>
 </body>
 </html>
