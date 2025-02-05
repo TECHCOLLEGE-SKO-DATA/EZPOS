@@ -16,8 +16,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             shopItemsGrid.innerHTML = '';
 
             products.forEach(product => {
-                const { Name, Price, Amount, Hidden, Category } = product;
+                const { Name, Price, Amount, Category } = product;
+                let Hidden = product.Hidden || Amount == 0
 
+                
                 if (Name && Price && !Hidden) {
                     let color;
                     
@@ -169,25 +171,35 @@ async function aprovePurchase() {
     try {
         const doc = await db.get('product');
         const products = doc.products || [];
-
+        let isInsertable = true
         pickedItems.querySelectorAll(".pickedItem").forEach(pickedItem => {
             const itemName = pickedItem.querySelector(".pickedItemName").innerHTML;
             const itemAmount = parseInt(pickedItem.querySelector(".itemAmount").innerHTML.replace(" x", ""));
 
             const product = products.find(product => product.Name === itemName);
             
-            if (product) {
-                product.Amount = Math.max(0, product.Amount - itemAmount);
-            }
+                if (product) {
+                    product.Amount = product.Amount - itemAmount;
+                    if (product.Amount < 0){
+                        alert("IKKE FLERE: " + product.Name + " PÅ LAGER")
+                        isInsertable = false
+                    }
+                }
+            // }
+
+
         });
 
-        await db.put({ ...doc, products });
+        if (isInsertable === true){
+            await db.put({ ...doc, products });
 
-        clearPickedItems();
+            clearPickedItems();
+    
+            location.reload();
+    
+            console.log("Purchase approved and stock updated.");
+        }
 
-        location.reload();
-
-        console.log("Purchase approved and stock updated.");
     } catch (error) {
         console.error("Error approving purchase:", error);
     }
