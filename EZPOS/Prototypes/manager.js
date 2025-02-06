@@ -2,10 +2,19 @@ var db = new PouchDB('ProductList');
 const purchasesTable = document.getElementById("puchasesTable")
 const userPassword = '';
 const vBox = document.getElementById("VBox")
+const productsDiv = document.getElementById("productsDiv")
+const mostPuchasedTable = document.getElementById("mostPuchasedTable")
+
 const purchases = [
-    {Name : "beer", Price : 22, Date : formatDate(new Date()), Amount : 10},
-    {Name : "beer", Price : 22, Date : formatDate(new Date()), Amount : 10},
-    {Name : "beer", Price : 22, Date : formatDate(new Date()), Amount : 10},
+    { Name: "beer", Price: 22, Date: formatDate(new Date()), Amount: 10 },
+    { Name: "beer", Price: 22, Date: formatDate(new Date()), Amount: 10 },
+    { Name: "beer", Price: 22, Date: formatDate(new Date()), Amount: 10 },
+]
+
+const purchasesAmounts = [
+    { Name: "beer", Amount: 10, Income: 2 },
+    { Name: "water", Amount: 9, Income: 21 },
+    { Name: "cola", Amount: 8, Income: 22 },
 ]
 
 addEventListener("keypress", function (event) {
@@ -15,25 +24,36 @@ addEventListener("keypress", function (event) {
     }
 });
 
-function formatDate(date){
+function formatDate(date) {
     return date.toLocaleDateString('da-eu')
 }
 
-document.getElementById("PasswordBtn").addEventListener("click", function () {
+function login() {
     const userInput = document.getElementById("myInput").value;
     purchasesTable.style.display = "none"
-    
+
     if (userInput === userPassword) {
-        document.getElementById("PBox").style.display = "none";
-        vBox.style.display = "contents";
-        document.getElementById("AddBtn").style.display = "contents";
-        document.getElementById("OrderList").style.display = "contents";
+        loadProducts()
+        document.getElementById("loadButtons").style.display = "contents"
     } else {
         alert("Incorrect Password");
     }
-});
+}
 
-async function loadPurchases(){
+function loadProducts() {
+    stopDisplayingData()
+    document.getElementById("PBox").style.display = "none";
+    productsDiv.style.display = "contents";
+    document.getElementById("AddBtn").style.display = "contents";
+}
+
+function stopDisplayingData() {
+    purchasesTable.style.display = "none"
+    productsDiv.style.display = "none"
+    mostPuchasedTable.style.display = "none"
+}
+
+async function loadPurchases() {
     purchasesTable.innerHTML = `
         <tr>
             <th>Name</th>
@@ -41,31 +61,30 @@ async function loadPurchases(){
             <th>Price</th>
             <th>Date</th>
         </tr>`
-   
+
+    stopDisplayingData()
+
     purchasesTable.style.display = "contents"
-    vBox.style.display = "none"
+
 
     purchases.forEach((purchase) => {
         const newGroup = document.createElement('tr');
-        // newGroup.classList.add('group');
-    
+
         const groupId = `group-${Date.now()}`;
         newGroup.setAttribute('data-id', groupId);
-    
+
         newGroup.innerHTML = `
             <td>${purchase.Name}</td>
             <td>${purchase.Amount}</td>
             <td>${purchase.Price}</td>
             <td>${purchase.Date}</td>
         `;
-    
+
         purchasesTable.appendChild(newGroup);
     })
 }
 
 async function addProduct() {
-    vBox.innerHTML = ""
-
     const newGroup = document.createElement('div');
     newGroup.classList.add('group');
 
@@ -178,6 +197,34 @@ async function retrieveAndDisplayProducts() {
 
     } catch (e) {
         console.error("Error retrieving the document:", e);
+    }
+}
+
+function loadMostSold() {
+    mostPuchasedTable.innerHTML = `
+        <tr>
+            <th>Number</th>
+            <th>Most Purchased</th>
+            <th>Most Money Made</th>
+            <th>Most Popular</th>
+        </tr>
+    `
+    stopDisplayingData()
+    mostPuchasedTable.style.display = "contents"
+
+    const amountsSorted = purchasesAmounts.slice().sort((a, b) => b.Amount - a.Amount)
+    const incomeSorted = purchasesAmounts.slice().sort((a, b) => b.Income - a.Income)
+
+    for (i = 0; purchasesAmounts.length > i; i++) {
+        const group = document.createElement("tr")
+        group.innerHTML = `
+            <td>${i + 1}</td>
+            <td>${amountsSorted[i].Name}</td>
+            <td>${incomeSorted[i].Name}</td>
+            <td></td>
+        `
+
+        mostPuchasedTable.appendChild(group)
     }
 }
 

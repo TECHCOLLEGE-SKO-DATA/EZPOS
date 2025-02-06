@@ -102,6 +102,7 @@ function pickItem(itemName, itemPrice) {
             if (element.innerHTML !== itemName) {
                 return
             }
+            
             const parent = element.parentElement.parentElement
             const itemPriceSpan = parent.querySelector(".pickedItemPrice")
             itemPriceSpan.innerHTML = formatPrice(parseFloat(itemPriceSpan.innerHTML) + itemPrice)
@@ -191,7 +192,7 @@ async function aprovePurchase() {
 
         if (isInsertable === true) {
             await db.put({ ...doc, products });
-
+            
             clearPickedItems();
 
             location.reload();

@@ -60,7 +60,6 @@ body {
     display: flex;
     margin-top: 10px;
     margin-left: 10px;
-    display: none;
 }
 
 .itemsections {
@@ -145,13 +144,22 @@ body {
     font-size: 26px;
 }
 
+.mostPuchased td, th{
+    padding: 20px 20px;
+    text-align: center;
+}
+
 .puchases th, td{
     border: 1px solid #dddddd;
     padding: 10px 30px;
+    text-align: center;
+}
+
+#productsDiv{
+    display: none;
 }
 
 #VBox {
-    display: none;
     flex-direction: column;
     gap: 1px;
 }
