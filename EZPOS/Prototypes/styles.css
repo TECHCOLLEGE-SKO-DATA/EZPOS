@@ -128,16 +128,37 @@ body {
     background-color: #ddd;
     color: black;
 }
-  
+
 .topnav a.active {
     background-color: #86aa04;
     color: white;
+}
+
+.puchases{
+    width: 100%;
+    display: none;
+}
+.puchases tr{
+    font-size: 20px;
+}
+.puchases th{
+    font-size: 26px;
+}
+
+.puchases th, td{
+    border: 1px solid #dddddd;
+    padding: 10px 30px;
 }
 
 #VBox {
     display: none;
     flex-direction: column;
     gap: 1px;
+}
+
+.itembox span{
+    font-size: 20px;
+    margin: 20px 5% 20px 0px;
 }
 
 .AddButton {

@@ -1,5 +1,12 @@
 var db = new PouchDB('ProductList');
+const purchasesTable = document.getElementById("puchasesTable")
 const userPassword = '';
+const vBox = document.getElementById("VBox")
+const purchases = [
+    {Name : "beer", Price : 22, Date : formatDate(new Date()), Amount : 10},
+    {Name : "beer", Price : 22, Date : formatDate(new Date()), Amount : 10},
+    {Name : "beer", Price : 22, Date : formatDate(new Date()), Amount : 10},
+]
 
 addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
@@ -8,20 +15,56 @@ addEventListener("keypress", function (event) {
     }
 });
 
+function formatDate(date){
+    return date.toLocaleDateString('da-eu')
+}
+
 document.getElementById("PasswordBtn").addEventListener("click", function () {
     const userInput = document.getElementById("myInput").value;
-
+    purchasesTable.style.display = "none"
+    
     if (userInput === userPassword) {
         document.getElementById("PBox").style.display = "none";
-        document.getElementById("VBox").style.display = "contents";
+        vBox.style.display = "contents";
         document.getElementById("AddBtn").style.display = "contents";
     } else {
         alert("Incorrect Password");
     }
 });
 
+async function loadPurchases(){
+    purchasesTable.innerHTML = `
+        <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Price</th>
+            <th>Date</th>
+        </tr>`
+   
+    purchasesTable.style.display = "contents"
+    vBox.style.display = "none"
+
+    purchases.forEach((purchase) => {
+        const newGroup = document.createElement('tr');
+        // newGroup.classList.add('group');
+    
+        const groupId = `group-${Date.now()}`;
+        newGroup.setAttribute('data-id', groupId);
+    
+        newGroup.innerHTML = `
+            <td>${purchase.Name}</td>
+            <td>${purchase.Amount}</td>
+            <td>${purchase.Price}</td>
+            <td>${purchase.Date}</td>
+        `;
+    
+        purchasesTable.appendChild(newGroup);
+    })
+}
+
 async function addProduct() {
-    const vBox = document.getElementById('VBox');
+    vBox.innerHTML = ""
+
     const newGroup = document.createElement('div');
     newGroup.classList.add('group');
 
@@ -53,7 +96,6 @@ async function addProduct() {
 }
 
 async function saveProduct() {
-    const vBox = document.getElementById("VBox");
     let doc = null;
 
     try {
