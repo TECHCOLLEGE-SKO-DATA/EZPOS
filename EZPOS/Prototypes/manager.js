@@ -64,8 +64,6 @@ async function loadPurchases(){
 }
 
 async function addProduct() {
-    vBox.innerHTML = ""
-
     const newGroup = document.createElement('div');
     newGroup.classList.add('group');
 
