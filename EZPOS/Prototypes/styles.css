@@ -170,4 +170,11 @@ body {
     width: 150px;
 }
   
+#OrderList{
+    display: none;
+    flex-direction: column;
+}
 
+.OrderListBtn{
+    background-color: #a0cea2;
+}
