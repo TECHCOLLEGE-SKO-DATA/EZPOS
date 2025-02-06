@@ -1,12 +1,13 @@
-# Use the official Apache HTTP server image from Docker Hub
-FROM httpd:2.4
+FROM httpd:latest
 
-# Set the working directory to the location where Apache serves files
+# Set the working directory inside the container
 WORKDIR /usr/local/apache2/htdocs/
 
-# Copy your static website files (HTML, CSS, JS) into the container
-# Assuming you have an "index.html", "style.css", "script.js" etc. in your local directory
+# Copy static website files into the Apache document root
 COPY . /usr/local/apache2/htdocs/
 
-# Expose port 80 to access the server from outside the container
+# Expose port 80
 EXPOSE 80
+
+# Start the Apache server
+CMD ["httpd-foreground"]
