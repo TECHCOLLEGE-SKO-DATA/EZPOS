@@ -1,3 +1,7 @@
+body{
+    overflow-y: hidden;
+}
+
 .grid{
     position: relative;
     display: inline-block;

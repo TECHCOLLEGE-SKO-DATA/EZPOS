@@ -15,6 +15,7 @@ document.getElementById("PasswordBtn").addEventListener("click", function () {
         document.getElementById("PBox").style.display = "none";
         document.getElementById("VBox").style.display = "contents";
         document.getElementById("AddBtn").style.display = "contents";
+        document.getElementById("OrderList").style.display = "contents";
     } else {
         alert("Incorrect Password");
     }
