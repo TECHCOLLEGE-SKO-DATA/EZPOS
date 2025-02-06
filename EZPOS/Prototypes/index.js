@@ -3,13 +3,14 @@ let totalPrice = 0
 let selectedPickedItemDivs = []
 let pickedItemsNames = new Set()
 const totalCostSpan = document.getElementById("totalCostText")
-var db = new PouchDB('ProductList')
+var productDB = new PouchDB('ProductList')
+var purchaseDB = new PouchDB('PurchaseHistory')
 
 
 document.addEventListener('DOMContentLoaded', async () => {
     async function loadShopItems() {
         try {
-            const doc = await db.get('product');
+            const doc = await productDB.get('product');
             const products = doc.products || [];
             const shopItemsGrid = document.querySelector('.grid.shopItems');
 
@@ -170,12 +171,27 @@ function deleteSelectedItems() {
 
 async function aprovePurchase() {
     try {
-        const doc = await db.get('product');
+        let purchaseDoc
+        try{
+            purchaseDoc = await purchaseDB.get('purchase');
+        } catch{
+            purchaseDoc = {
+                _id: "purchase",
+                purchases: []
+            };
+        }
+        
+
+        const purchases = purchaseDoc.purchases || [];
+
+        const doc = await productDB.get('product');
         const products = doc.products || [];
         let isInsertable = true
         pickedItems.querySelectorAll(".pickedItem").forEach(pickedItem => {
             const itemName = pickedItem.querySelector(".pickedItemName").innerHTML;
             const itemAmount = parseInt(pickedItem.querySelector(".itemAmount").innerHTML.replace(" x", ""));
+            const itemPrice = pickedItem.querySelector(".pickedItemPrice").innerHTML;
+
 
             const product = products.find(product => product.Name === itemName);
 
@@ -185,14 +201,26 @@ async function aprovePurchase() {
                     alert("IKKE FLERE: " + product.Name + " PÅ LAGER")
                     isInsertable = false
                 }
+                else{
+                    purchases.push({
+                        Name : itemName,
+                        Amount : itemAmount,
+                        Price : itemPrice,
+                        Date : new Date().toLocaleDateString('da-eu')
+                    })
+                }
+
             }
 
 
         });
 
         if (isInsertable === true) {
-            await db.put({ ...doc, products });
-            
+            await productDB.put({ ...doc, products });
+
+            await purchaseDB.put({ ...purchaseDoc, purchases});
+
+
             clearPickedItems();
 
             location.reload();

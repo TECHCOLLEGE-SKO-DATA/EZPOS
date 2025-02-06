@@ -1,21 +1,9 @@
-var db = new PouchDB('ProductList');
+var productDB = new PouchDB('ProductList')
+var purchaseDB = new PouchDB('PurchaseHistory')
+
 const purchasesTable = document.getElementById("puchasesTable")
 const userPassword = '';
 const vBox = document.getElementById("VBox")
-const productsDiv = document.getElementById("productsDiv")
-const mostPuchasedTable = document.getElementById("mostPuchasedTable")
-
-const purchases = [
-    { Name: "beer", Price: 22, Date: formatDate(new Date()), Amount: 10 },
-    { Name: "beer", Price: 22, Date: formatDate(new Date()), Amount: 10 },
-    { Name: "beer", Price: 22, Date: formatDate(new Date()), Amount: 10 },
-]
-
-const purchasesAmounts = [
-    { Name: "beer", Amount: 10, Income: 2 },
-    { Name: "water", Amount: 9, Income: 21 },
-    { Name: "cola", Amount: 8, Income: 22 },
-]
 
 addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
@@ -65,11 +53,16 @@ async function loadPurchases() {
     stopDisplayingData()
 
     purchasesTable.style.display = "contents"
+    vBox.style.display = "none"
+
+    const doc = await purchaseDB.get("purchase")
+
+    const purchases = doc.purchases || [];
 
 
     purchases.forEach((purchase) => {
         const newGroup = document.createElement('tr');
-
+    
         const groupId = `group-${Date.now()}`;
         newGroup.setAttribute('data-id', groupId);
 
@@ -119,7 +112,7 @@ async function saveProduct() {
     let doc = null;
 
     try {
-        doc = await db.get('product');
+        doc = await productDB.get('product');
     } catch (e) {
         console.log("Could not fetch the Products document");
         doc = {
@@ -152,7 +145,7 @@ async function saveProduct() {
     console.log("Loaded revision " + doc._rev);
 
     try {
-        const result = await db.put(doc);
+        const result = await productDB.put(doc);
         console.log("Products saved successfully with revision: " + result.rev);
     } catch (e) {
         console.error("Error saving document:", e);
@@ -161,7 +154,7 @@ async function saveProduct() {
 
 async function retrieveAndDisplayProducts() {
     try {
-        const doc = await db.get('product');
+        const doc = await productDB.get('product');
         const products = doc.products || [];
 
         const container = document.getElementById('VBox');
@@ -230,14 +223,14 @@ function loadMostSold() {
 
 async function removeProduct(productGroup) {
     try {
-        const doc = await db.get('product');
+        const doc = await productDB.get('product');
         const container = document.getElementById('VBox');
         const index = Array.from(container.children).indexOf(productGroup);
 
         if (index !== -1) {
             doc.products.splice(index, 1);
 
-            await db.put(doc);
+            await productDB.put(doc);
             console.log('Product removed successfully');
 
             productGroup.remove();
