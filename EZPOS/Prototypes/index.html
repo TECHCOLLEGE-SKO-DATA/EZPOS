@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <title>Operator</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/pouchdb@9.0.0/dist/pouchdb.min.js"></script>
+</head>
+
+<body>
+    <div id="ui">
+        <div class="grid shopItems">
+
+        </div>
+        <div class="grid">
+            <div id="actions">
+                <div class="actionsInnerBox">
+                    <div class="action red" onclick="deleteSelectedItems()">
+                        <div class="highlight action"></div>
+                        <div class="item">
+                            <span>Slet</span>
+                        </div>
+                    </div>
+
+                    <div onclick="clearPickedItems()" class="action yellow">
+                        <div class="highlight action"></div>
+                        <div class="item">
+                            <span>Nulstil</span>
+                        </div>
+                    </div>
+
+                    <div class="action approve" onclick="aprovePurchase()">
+                        <div class="highlight action"></div>
+                        <div class="item">
+                            <span>Godkend</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid pickedItems">
+            <div class="pageButtons">
+                <div class="pageLinkDiv operatorLink">
+                    <a href="index.html" class="pageLink white">
+                        <div class="pageLinkText">
+                            <span>
+                                Operator
+                            </span>
+                        </div>
+                    </a>
+                </div>
+                <div class="pageLinkDiv managerLink">
+                    <a href="manager.html" class="pageLink black">
+                        <div class="pageLinkText">
+                            <span>
+                                Manager
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="totalCost">
+                <div class="totalCostText">
+                    <span class="totalCost" id="totalCostText">0,00 KR.</span>
+
+                </div>
+                <div id="totalLabel">
+                    <span>TOTAL</span>
+                </div>
+
+            </div>
+            <div id="pickedItems">
+
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+    <script src="preventDoubleTapZoom.js"></script>
+</body>
+
+</html>

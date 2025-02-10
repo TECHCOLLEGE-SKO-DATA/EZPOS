@@ -1,0 +1,321 @@
+body{
+    overflow-y: hidden;
+}
+
+.grid{
+    position: relative;
+    display: inline-block;
+    width: 12.5%;
+    height: 100% !important;
+    border-radius: 5px;
+    margin: 0;
+}
+
+#ui{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.grid.shopItems{
+    padding: 0;
+    width: 62.5% !important;
+    background: #1e1e1e;
+    color: white;
+    height: 100vh;
+}
+
+.itemButton{
+    display: inline-block;
+    width: 18.3%;
+    height: 17vh;
+    padding: 0;
+    position: relative;
+    cursor: pointer;
+    vertical-align: top;
+    margin: 0.5%;
+    color: rgb(255, 255, 255);
+    background-color: rgb(90, 94, 94);
+    transition: transform 0.1s ease-in-out;
+    height: 200px;
+    width: 200px;
+}
+
+.itemButton:active{
+    transform: translateY(2px);
+}
+
+.itemButton:hover{
+    background-color: rgb(76, 75, 75);
+}
+
+.itemButtonColor{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+.itemButtonColor.red{
+    background-color: red;
+}
+
+.itemButtonColor.darkblue{
+    background-color: #00f;
+}
+
+.itemButtonColor.blue{
+    background-color: #0aa;
+}
+
+.itemButtonColor.green{
+    background-color: darkgreen;
+}
+
+.itemButtonColor.yellow{
+    background-color: rgb(132, 132, 1);
+}
+
+.itemName{
+    text-align: center;
+    margin-top: 0%;
+    font-size: 200%;
+    font-style:normal;
+    color: #ffffff;
+}
+
+.itemPrice{
+    padding: 0%;
+    font-size: 300%;
+    margin-top: 60px;
+    font-style: oblique;
+    color: #d6b025;
+}
+
+.redBox{
+    width: 100%;
+    height: 100%;
+    background-color: red;
+}
+
+.sectionSplit{
+    margin: 0 auto;
+
+}
+
+.item{
+    padding-top: 10px;
+    text-align: center;
+    width: 100%;
+    height: 10vh;
+    display: block;
+    font-size: 1.7vw;
+    line-height: 2rem;
+}
+
+.price{
+    display: block;
+    margin-left: 20px;
+    font-size: 50px;
+}
+
+span.priceText{
+    margin-bottom: 2%;
+}
+
+.action{
+    width: 98%;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    vertical-align: top;
+    margin-top: 5px;
+}
+
+.pageButtons{
+    display: flex;
+    text-align: center;
+    height: 50px;
+    border-radius: 15px;
+}
+
+.pageButtons.manager{
+    width: 200px;
+}
+
+.grid.pickedItems{
+    background-color: white;
+    margin-left: 10px;
+    display: inline-block;
+    position: relative;
+    width: 30%;
+    height: 100%;
+}
+
+#actions{
+    position: relative;
+    background-color: rgb(51, 51, 51);
+    height: 97.8%;
+    padding: 10px;
+}
+
+.action.red{
+    background-color: red;
+}
+.action.yellow{
+    background-color: #aa0;
+}
+.action.red{
+    background-color: red;
+}
+
+.action.approve{
+    background-color: #0c0;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 10%;
+}
+
+body{
+    touch-action: manipulation;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    min-width: 320px;
+    background: #fff;
+    font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.5em;
+    background-color: black;
+    color: rgba(0, 0, 0, .87);
+}
+
+/*div.highlight{
+    height: 50px;
+    width: 100%;
+    background: hsla(0, 0%, 100%, .26666666666666666);
+    border-radius: 5px 5px 0 0;
+}
+    */
+
+div.highlight.action{
+    height: 30px;
+}
+
+
+.pageLinkDiv.operatorLink{
+    background-color: #21ba45;
+    width: 50%;
+    border-radius: 5px 0 0 5px;
+}
+
+.pageLinkDiv.operatorLink.managerPage{
+    background-color: rgb(205, 205, 205);
+}
+
+.pageLink.white{
+    color: white;
+}
+
+.pageLink.black{
+    color: black;
+}
+
+div.pageLinkDiv{
+    height: 75px;
+    text-align: center;
+    justify-content: center;
+    cursor: pointer;
+    display: flex;
+}
+
+.pageLinkDiv.managerLink{
+    border-radius: 0 5px 5px 0;
+    width: 50%;
+    background-color: rgb(205, 205, 205);
+}
+
+.pageLinkDiv.managerLink.managerPage{
+    background-color: #21ba45;
+}
+
+.pageLinkText{
+    margin: 20px;
+    text-align: center;
+}
+
+a.pageLink{
+    display: block;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+div.totalCost{
+    border: 1px solid rgba(34,36,38,.15);
+    margin-top: 50px;
+    width: 95%;
+    text-align: center;
+    height: 200px;
+    box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15);
+}
+
+div.totalCostText{
+    margin-top: 10%;
+    font-size: 3rem;
+    text-align: center;
+    width: 100%;
+    height: auto;
+}
+
+#totalLabel{
+    margin-top: 20px;
+    font-size: 1.5rem;
+}
+
+.pickedItem.selected{
+    background-color: #0aa;
+}
+
+#pickedItems{
+    height: 65%;
+    width: 80%;
+    overflow-y: scroll;
+}
+
+.pickeditemSelectedCheckBox{
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+}
+
+.actionsInnerBox{
+    height: 100%;
+    position: relative;
+}
+
+div.pickedItem{
+    position: relative;
+    background-color: rgb(227, 227, 227);
+    width: 100%;
+    height: 60px;
+    font-size: x-large;
+    border-bottom: #1e1e1e 2px solid;
+}
+
+span.pickedItemPrice{
+    position: absolute;
+    right: 0;
+    top: 20%;
+}
+
+span.pickedItemNameAndAmount{
+    position: absolute;
+    left: 10px;
+    top: 20%;
+}
