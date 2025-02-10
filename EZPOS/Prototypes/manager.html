@@ -16,34 +16,52 @@
         <a class="active" href="manager.html">Manager</a>
     </div>
 
-    <div id="PBox" class="passwordbox">
-        <h5>Password:</h5>
-        <input type="password" minlength="4" placeholder="Enter pin" id="myInput" class="password-input">
-        <button class="passwordbutton" onclick="login()" id="PasswordBtn">Enter</button>
-    </div>
+    <div id="PBox">
+        <div class="background">
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        <form>
+            <h3>Login Here</h3>
+        
+            <label for="username">Username</label>
+            <input class="inputLogin" type="text" placeholder="Username..." id="username">
+        
+            <label for="password">Password</label>
+            <input class="inputLogin" type="password" placeholder="Password..." id="password">
+        
+            <button type="button" class="buttonLogin" id="loginBtn" >Log In</button>
+            <!--onclick="login()"-->
 
+            <div id="errorMessage"  class="errorMassageStyle">Incorrect Username or Password</div>
+
+        </form>
+    </div>
 
     <table class="puchases" id="puchasesTable">
     </table>
 
-    <table class="mostPuchased" id="mostPuchasedTable"></table>
+    <table class="puchases" id="mostPuchasedTable"></table>
 
     <div id="productsDiv">
         <div id="VBox" class="itembox"></div>
-
-        <div id="AddBtn" class="AddButton">
-            <button class="addmoreButton" onclick="addProduct()">Add Product</button>
-            <button onclick="saveProduct()">Save Products</button>
+        
+        <hr style="border: 1px solid #000;">
+        <div id="AddBtn">
+            <button class="CustomButton" onclick="addProduct()">Add Product</button>
+            <button class="CustomButton" onclick="saveProduct()">Save Products</button>
         </div>
-    </div>
 
-    <br>
+    </div>
+    
     <div class="AddButton" id="loadButtons">
-        <button onclick="loadPurchases()">Show Purchases</button>
-        <button onclick="loadProducts()">Show Products</button>
-        <button onclick="loadMostSold()">Show most sold items</button>
+        <hr style="border: 1px solid #000;">
+        <button class="CustomButton" onclick="loadPurchases()">Show Purchases</button>
+        <button class="CustomButton" onclick="loadProducts()">Show Products</button>
+        <button class="CustomButton" onclick="loadMostSold()">Show most sold items</button>
+        <hr style="border: 1px solid #000;">
     </div>
-
+    
     <script src="manager.js"></script>
 
 </body>

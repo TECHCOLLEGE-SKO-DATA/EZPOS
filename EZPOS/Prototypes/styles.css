@@ -1,137 +1,150 @@
+/*
+
+1 - 333333 
+2 - 555555 
+3 - 777777 
+4 - 999999 
+5 - B3B3B3 
+6 - D1D1D1 
+
+*/
+
+
 body {
+    /*324080*/
     margin: 0;
+    background-color: #555555;
+    font-family:  'Poppins',sans-serif;
+    color: #FFF;
 }
-  
+
 .group {
     display: flex;
     flex-direction: flex;
     margin-top: 5px;
     gap: 20px;
     padding: 5px;
-    background-color: #f0f0f0;
-    border: 2px solid #ccc;
+    border: 5px solid #1e1e1e;
     border-radius: 5px;
+    background-color: #00000069;
 }
 
 .group button,
 .group select,
-.group input{
-    height: 40px;
-    font-size: 100%;
+.group input {
+    font-size: 1rem; /* Better for responsiveness */
+    padding: 10px 15px;
+    border: 2px solid #ccc;
+    border-radius: 8px; /* Smooth, rounded corners */
+    background-color: #f1f1f1; /* Soft, light background */
+    color: #333; /* Darker text for better contrast */
+    transition: all 0.3s ease; /* Smooth transition for interactions */
 }
+
+.group button:hover,
+.group select:hover,
+.group input:hover {
+    background-color: #e0e0e0; 
+    border-color: #888; 
+    cursor: pointer; 
+}
+
+.group button:focus,
+.group select:focus,
+.group input:focus {
+    outline: none;
+}
+
+.group button:active,
+.group select:active,
+.group input:active {
+    background-color: #ccc;
+}
+
 
 .group input[type="checkbox"]{
     transform: scale(2);
 }
 
 .group label{
-    margin-top: 15px;
-}
-
-.password-input{
-    height: 50%;
-}
-
-.addmoreButton {
-    margin: 5px;
-    margin-left: 10px;
-    background-color: #86aa04;
-}
-
-.addmoreButton:hover {
-    background-color: #1e8623;
-}
-
-.passwordbox h5{
-    font-size: 24px;
-}
-
-.passwordbox {
-    display: flex;
-    padding: 5px;
-    border: 2px solid #2b1010;
-    gap: 7px;
-    height: 80px;
-    align-items: center;
-    display: auto;
+    margin-top: 10px;
 }
 
 .itembox {
     display: flex;
-    margin-top: 10px;
-    margin-left: 10px;
+    margin: 1%;
 }
 
 .itemsections {
     gap: 20px;
-    border: #333;
+    border: #ffffff;
     align-items: center;
-}
-
-.passwordbutton {
-    cursor: pointer;
-    outline: 1px;
-    padding: auto;
-    background-color: #b9b6b6;
-    width: 80px;
-    height: 50%;
-    color: #000000;
-    outline: #2b1010;
-    text-align: center;
 }
 
 .RemoveButton {
     cursor: pointer;
-    outline: 1px;
-    padding: auto;
-    background-color: #b9b6b6;
-    height: 20px;
-    color: #000000;
-    outline: #2b1010;
+    padding: 0.5rem 1rem;
+    background-color: #868686;
+    border: 2px solid #000;
     text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
+
 
 .RemoveButton:hover {
-    background-color: #df0c0c;
-    color: #000000;
+    background-color: red !important;
+    color: #000 !important;
+    transform: scale(1.05);
+    border: 2px solid #b60000 !important;
 }
 
-.passwordbutton:hover {
-    background-color: #8a8787;
-    color: black;
-}
-  
-.item {
-    padding: 50px 50px;
-    background-color: #4caf50;
-    color: white;
-    border-radius: 5px;
-    text-align: center;
-}
 
+
+
+
+
+
+
+
+
+/*NAVBAR*/
 .topnav {
-    background-color: #333;
+    background-color: #1e1e1e;
     overflow: hidden;
+    font-weight: bold;
 }
 
 .topnav a {
-    float: left;
+    float:left;
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 110%;
 }
   
 .topnav a:hover {
-    background-color: #ddd;
-    color: black;
+    background-color: #3b3b3b;
+    color: #FFF;
 }
 
 .topnav a.active {
-    background-color: #86aa04;
+    background-color: #555555;
     color: white;
 }
+
+
+
+
+
+
+
+
+
+
 
 .puchases{
     width: 100%;
@@ -147,12 +160,22 @@ body {
 .mostPuchased td, th{
     padding: 20px 20px;
     text-align: center;
+    border: 1px solid #2e2c2c;
+    background-color: #6d6d6d;
 }
 
+
 .puchases th, td{
-    border: 1px solid #dddddd;
+    border: 1px solid #2e2c2c;
+    background-color: #6d6d6d;
     padding: 10px 30px;
     text-align: center;
+}
+
+.puchases th{
+    font-size: 20px;
+    background-color: #3f3f3f;
+
 }
 
 #productsDiv{
@@ -161,7 +184,7 @@ body {
 
 #VBox {
     flex-direction: column;
-    gap: 1px;
+    gap: 2px;
 }
 
 .itembox span{
@@ -173,10 +196,69 @@ body {
     display: none;
 }
 
-.AddButton button{
-    height: 50px;
-    width: 150px;
+
+
+
+
+
+/*CustomButton*/
+
+.CustomButton {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-size: 18px;
+    border-radius: 5px;
+    padding: 0.7%; 
+    border: 2px solid #000;
+    text-align: center;
+    text-transform: uppercase; 
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 1%;
 }
+
+.CustomButton:hover {
+    background-color: #000;
+    color: #ffffff;
+    border-color: #1e1e1e;
+    transform: translateY(-0px); 
+}
+
+.CustomButton:focus {
+    outline: none; 
+    box-shadow: 0 0 5px rgba(51, 113, 179, 0.5);
+}
+
+@media (max-width: 768px) {
+    .CustomButton {
+        width: 50%;
+        font-size: 16px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .CustomButton {
+        width: 80%;
+        font-size: 14px; 
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*ORDERLIST*/
   
 #OrderList{
     display: none;
@@ -185,4 +267,126 @@ body {
 
 .OrderListBtn{
     background-color: #a0cea2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*PASSWORD BOX*/
+*,
+*:before,
+*:after{
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+
+.background{
+width: 430px;
+height: 520px;
+position: absolute;
+transform: translate(-50%,-50%);
+left: 50%;
+top: 50%;
+}
+.background .shape{
+height: 200px;
+width: 200px;
+position: absolute;
+border-radius: 50%;
+}
+
+form{
+height: 520px;
+width: 400px;
+background-color: #333333d8;
+position: absolute;
+transform: translate(-50%,-50%);
+top: 50%;
+left: 50%;
+border-radius: 10px;
+backdrop-filter: blur(10px);
+border: 2px solid rgba(255,255,255,0.1);
+box-shadow: 0 0 40px rgba(8,7,16,0.6);
+padding: 50px 35px;
+}
+
+form *{
+color: #FFFFFF;
+letter-spacing: 0.5px;
+outline: none;
+border: none;
+}
+
+form h3{
+font-size: 32px;
+font-weight: 500;
+line-height: 42px;
+text-align: center;
+color: #ffffff;
+}
+
+label{
+display: block;
+margin-top: 30px;
+font-size: 16px;
+font-weight: 500;
+}
+
+.inputLogin{
+display: block;
+height: 50px;
+width: 100%;
+background-color: rgba(255,255,255,0.07);
+border-radius: 3px;
+padding: 0 10px;
+margin-top: 8px;
+font-size: 14px;
+font-weight: 300;
+}
+
+::placeholder{
+color: #e5e5e5;
+}
+
+.buttonLogin{
+margin-top: 50px;
+width: 100%;
+background-color: #1e1e1e;
+color: #FFF;
+padding: 15px 0;
+font-size: 18px;
+font-weight: 600;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.buttonLogin:hover {
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #ffffff;
+    transform: translateY(-0px); 
+}
+
+
+.errorMassageStyle{
+    display: none;
+    margin-top: 10%;
+    text-align: center;
+    font-weight: bold;
+    color: red;
 }

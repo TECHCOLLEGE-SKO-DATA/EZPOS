@@ -205,7 +205,7 @@ async function aprovePurchase() {
                     purchases.push({
                         Name : itemName,
                         Amount : itemAmount,
-                        Price : itemPrice,
+                        Price : parseFloat(itemPrice),
                         Date : new Date().toLocaleDateString('da-eu')
                     })
                 }

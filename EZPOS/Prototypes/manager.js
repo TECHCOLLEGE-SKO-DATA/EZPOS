@@ -2,31 +2,40 @@ var productDB = new PouchDB('ProductList')
 var purchaseDB = new PouchDB('PurchaseHistory')
 
 const purchasesTable = document.getElementById("puchasesTable")
-const userPassword = '';
 const vBox = document.getElementById("VBox")
 
-addEventListener("keypress", function (event) {
+const userName = '';
+const userPassword = ''; 
+
+document.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
-        document.getElementById("PasswordBtn").click();
+        document.getElementById("loginBtn").click();
     }
 });
+
+document.getElementById("loginBtn").addEventListener("click", function () {
+    const enteredUsername = document.getElementById("username").value;
+    const enteredPassword = document.getElementById("password").value;
+
+    if (enteredUsername === userName && enteredPassword === userPassword) {
+        loadProducts(); 
+        document.getElementById("loadButtons").style.display = "block"; 
+    } else {
+        errorMessage.style.display = "block";
+    }
+});
+
+function loadProducts() {
+    console.log("Loading products...");
+}
+
+
 
 function formatDate(date) {
     return date.toLocaleDateString('da-eu')
 }
 
-function login() {
-    const userInput = document.getElementById("myInput").value;
-    purchasesTable.style.display = "none"
-
-    if (userInput === userPassword) {
-        loadProducts()
-        document.getElementById("loadButtons").style.display = "contents"
-    } else {
-        alert("Incorrect Password");
-    }
-}
 
 function loadProducts() {
     stopDisplayingData()
@@ -53,7 +62,6 @@ async function loadPurchases() {
     stopDisplayingData()
 
     purchasesTable.style.display = "contents"
-    vBox.style.display = "none"
 
     const doc = await purchaseDB.get("purchase")
 
@@ -62,7 +70,7 @@ async function loadPurchases() {
 
     purchases.forEach((purchase) => {
         const newGroup = document.createElement('tr');
-    
+
         const groupId = `group-${Date.now()}`;
         newGroup.setAttribute('data-id', groupId);
 
@@ -85,7 +93,7 @@ async function addProduct() {
     newGroup.setAttribute('data-id', groupId);
 
     newGroup.innerHTML = `
-        <select name="category">
+        <select class="CustomBox" name="category">
             <option value="" disabled selected>Select a category</option>
             <option value="Food">Food</option>
             <option value="Beverage">Beverage</option>
@@ -193,33 +201,55 @@ async function retrieveAndDisplayProducts() {
     }
 }
 
-function loadMostSold() {
+async function loadMostSold() {
+    const purchasesAmounts = []
     mostPuchasedTable.innerHTML = `
         <tr>
             <th>Number</th>
             <th>Most Purchased</th>
             <th>Most Money Made</th>
-            <th>Most Popular</th>
         </tr>
     `
+    const doc = await purchaseDB.get("purchase")
+
+    const purchases = doc.purchases || [];
+
+    purchases.forEach((purchase) => {
+        const foundpurchase = purchasesAmounts.find(p => p.Name === purchase.Name)
+
+        if (foundpurchase) {
+            foundpurchase.Amount += purchase.Amount
+            foundpurchase.Price = foundpurchase.Price + purchase.Price
+        } else {
+            purchasesAmounts.push({
+                Name: purchase.Name,
+                Amount : purchase.Amount,
+                Price : purchase.Price
+            })
+        }
+
+        window.onload = retrieveAndDisplayProducts;
+
+    })
+
     stopDisplayingData()
     mostPuchasedTable.style.display = "contents"
 
     const amountsSorted = purchasesAmounts.slice().sort((a, b) => b.Amount - a.Amount)
-    const incomeSorted = purchasesAmounts.slice().sort((a, b) => b.Income - a.Income)
+    const incomeSorted = purchasesAmounts.slice().sort((a, b) => b.Price - a.Price)
 
-    for (i = 0; purchasesAmounts.length > i; i++) {
+    for (i = 0; amountsSorted.length > i; i++) {
         const group = document.createElement("tr")
         group.innerHTML = `
             <td>${i + 1}</td>
             <td>${amountsSorted[i].Name}</td>
             <td>${incomeSorted[i].Name}</td>
-            <td></td>
         `
 
         mostPuchasedTable.appendChild(group)
     }
 }
+
 
 async function removeProduct(productGroup) {
     try {
@@ -239,5 +269,6 @@ async function removeProduct(productGroup) {
         console.error('Error removing product:', error);
     }
 }
+
 
 window.onload = retrieveAndDisplayProducts;

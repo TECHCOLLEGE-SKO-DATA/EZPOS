@@ -172,6 +172,7 @@ span.priceText{
     background-color: #0c0;
     position: absolute;
     bottom: 0;
+    margin-bottom: 10%;
 }
 
 body{
